@@ -8,11 +8,9 @@ interface CourseRepositoryInterface
 
     public function create(array $data);
 
-    public function update(array $data, int $id);
+    public function findByUuid(string $uuid, bool $relathionship = true);
 
-    public function delete(int $id);
+    public function deleteByUuid(string $uuid);
 
-    public function find(int $id);
-
-    public function findOrFail(int $id);
+    public function updateByUuid(array $data, string $uuid);
 }
