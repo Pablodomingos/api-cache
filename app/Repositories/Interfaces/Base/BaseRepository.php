@@ -47,4 +47,23 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->newQuery()->findOrFail($id);
     }
+
+    public function findByUuid(string $uuid): Model
+    {
+        return $this->model->newQuery()->where('uuid', '=', $uuid)->firstOrFail();
+    }
+
+    public function deleteByUuid(string $uuid): bool
+    {
+        $model = $this->model->newQuery()->where('uuid', '=', $uuid)->firstOrFail();
+        return $model->delete();
+    }
+
+    public function updateByUuid(array $attributes, string $uuid): Model
+    {
+        $fillable = Arr::only($attributes, $this->model->getFillableColumns());
+        $model = $this->model->newQuery()->where('uuid', '=', $uuid)->firstOrFail();
+        $model->update($fillable);
+        return $model->fresh();
+    }
 }

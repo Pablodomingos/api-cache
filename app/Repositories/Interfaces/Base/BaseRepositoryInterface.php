@@ -15,4 +15,10 @@ interface BaseRepositoryInterface
     public function find(int $id);
 
     public function findOrFail(int $id);
+
+    public function findByUuid(string $uuid);
+
+    public function deleteByUuid(string $uuid);
+
+    public function updateByUuid(array $data, string $uuid);
 }
