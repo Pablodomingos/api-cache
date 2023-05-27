@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\Course $course
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Lesson> $lessons
  * @property-read int|null $lessons_count
+ * @method static \Database\Factories\ModuleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Module newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Module newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Module query()
