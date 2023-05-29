@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Repositories\Interfaces\Base\BaseRepository;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 class CourseRepository extends BaseRepository implements CourseRepositoryInterface
@@ -24,6 +25,16 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
                 ->with('modules.lessons')
                 ->get()
         );
+    }
+
+    public function create(array $attributes): Model
+    {
+        if (Cache::has('courses')) {
+            Cache::forget('courses');
+        }
+
+        $fillable = Arr::only($attributes, $this->model->getFillableColumns());
+        return $this->model->newQuery()->create($fillable)->fresh();
     }
 
     public function findByUuid(string $uuid, bool $relathionship = true): Model

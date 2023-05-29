@@ -6,7 +6,7 @@ interface CourseRepositoryInterface
 {
     public function all();
 
-    public function create(array $data);
+    public function create(array $attributes);
 
     public function findByUuid(string $uuid, bool $relathionship = true);
 
